@@ -12,6 +12,7 @@ include_directories(include/)
 
 add_executable(main
         src/main.cpp
+        src/unit_tests.cpp
         src/Person.cpp
 )
 
