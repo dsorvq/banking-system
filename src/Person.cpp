@@ -68,3 +68,27 @@ auto Person::set_is_alive(bool is_alive) -> bool {
 auto Person::operator<=>(const Person &other) const -> std::strong_ordering {
   return hashed_fingerprint_ <=> other.hashed_fingerprint_;
 }
+
+auto Person::get_info(std::optional<std::string> file_name) const -> void {
+  if (file_name) {
+    std::ofstream file(*file_name);
+    if (file.is_open()) {
+      print_info(file);
+      file.close();
+    } else {
+      std::cerr << "Failed to open file: " << *file_name << std::endl;
+    }
+  } else {
+    print_info(std::cout);
+  }
+}
+
+auto Person::print_info(std::ostream& os) const -> void {
+  os
+    << name_ << "\n"
+    << age_ << "\n"
+    << gender_ << "\n"
+    << hashed_fingerprint_ << "\n"
+    << socioeconomic_rank_ << "\n"
+    << is_alive_ << "\n";
+}

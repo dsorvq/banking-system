@@ -127,3 +127,20 @@ TEST_F(PersonTest, Person_SpaceshipOperatorComparison) {
   EXPECT_TRUE((person2 <=> person1) == std::strong_ordering::greater) << "person2 should be considered greater than person1 based on hashed fingerprints.";
   EXPECT_TRUE((person1 <=> person1) == std::strong_ordering::equal) << "A person should be equal to themselves when comparing hashed fingerprints.";
 }
+
+TEST_F(PersonTest, Person_GetInfoFileOutput) {
+  Person person = create_valid_person();
+  std::string filename = "test_person_info.txt";
+  person.get_info(filename);
+
+  std::ifstream file(filename);
+  EXPECT_TRUE(file.good()) << "File " << filename << " was not created.";
+
+  std::string line;
+  getline(file, line);
+  EXPECT_FALSE(line.empty()) << "The file " << filename << " is empty, but expected to contain person information.";
+
+  file.close();
+
+  std::remove(filename.c_str());
+}
