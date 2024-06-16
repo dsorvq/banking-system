@@ -8,14 +8,10 @@
 
 #include "Person.hpp"
 
-class Bank;
-class Person;
-
 class Account {
-friend class Bank;
 
 public:
-  Account(const Person* const owner, const Bank* const bank, std::string& password);
+  Account(const Person* const owner, std::string& password);
 
   auto get_owner() const -> const Person*;
   auto get_balance() const -> double;
@@ -38,7 +34,6 @@ private:
 
 private:
   const Person* owner_;
-  const Bank* bank_;
   const std::string CVV2_;
   std::string password_;
   std::string exp_date_; // TODO: set this 

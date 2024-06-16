@@ -1,15 +1,12 @@
 #include "Account.hpp"
 
-Account::Account(const Person* const owner, const Bank* const bank, std::string& password)
+Account::Account(const Person* const owner, std::string& password)
   : owner_{owner}
-  , bank_{bank}
   , password_{password}
   , account_number_{generate_unique_account_number()}
   , balance_{0}
   , account_status_{false}
-{
-   
-}
+{ }
 
 auto Account::get_owner() const -> const Person* {
   return owner_;
