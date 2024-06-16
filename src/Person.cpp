@@ -52,11 +52,12 @@ auto Person::set_age(size_t age) -> bool {
 }
 
 auto Person::set_socioeconomic_rank(size_t rank) -> bool {
-  if (!(1 <= rank and rank <= 10)) {
+  if (1 <= rank and rank <= 10) {
     socioeconomic_rank_ = rank;
     return true;
   }
-  return false;
+
+  throw std::invalid_argument("socioeconomic rank must be between 1 and 10");
 }
 
 auto Person::set_is_alive(bool is_alive) -> bool {
