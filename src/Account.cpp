@@ -4,7 +4,9 @@ std::unordered_set<std::string> Account::used_account_numbers;
 
 Account::Account(const Person* const owner, std::string& password)
   : owner_{owner}
+  , CVV2_{generate_random_digits_string(4)}
   , password_{password}
+  , exp_date_{"12-34"} // TODO: change this to proper init
   , account_number_{generate_unique_account_number()}
   , balance_{0.0}
   , account_status_{true}
@@ -71,14 +73,7 @@ auto Account::operator<=>(const Account& other) const -> std::strong_ordering {
 auto Account::generate_unique_account_number() const -> std::string {
   std::string account_number;
   do {
-    account_number.erase(begin(account_number_), end(account_number));
-    std::random_device rd;
-    std::mt19937 generator(rd());
-    std::uniform_int_distribution<int> distribution(0, 9);
-
-    for (int i = 0; i < 16; ++i) {
-      account_number += std::to_string(distribution(generator));
-    }
+    account_number = generate_random_digits_string(16);
   } while (used_account_numbers.contains(account_number));
 
   used_account_numbers.insert(account_number);
