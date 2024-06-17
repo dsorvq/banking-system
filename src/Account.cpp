@@ -1,11 +1,13 @@
 #include "Account.hpp"
 
+std::unordered_set<std::string> Account::used_account_numbers;
+
 Account::Account(const Person* const owner, std::string& password)
   : owner_{owner}
   , password_{password}
   , account_number_{generate_unique_account_number()}
-  , balance_{0}
-  , account_status_{false}
+  , balance_{0.0}
+  , account_status_{true}
 { }
 
 auto Account::get_owner() const -> const Person* {
@@ -69,13 +71,13 @@ auto Account::operator<=>(const Account& other) const -> std::strong_ordering {
 auto Account::generate_unique_account_number() const -> std::string {
   std::string account_number;
   do {
-    std::string number;
+    account_number.erase(begin(account_number_), end(account_number));
     std::random_device rd;
     std::mt19937 generator(rd());
     std::uniform_int_distribution<int> distribution(0, 9);
 
     for (int i = 0; i < 16; ++i) {
-      number += std::to_string(distribution(generator));
+      account_number += std::to_string(distribution(generator));
     }
   } while (used_account_numbers.contains(account_number));
 

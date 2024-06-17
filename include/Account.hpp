@@ -39,8 +39,8 @@ private:
   std::string exp_date_; // TODO: set this 
   const std::string account_number_;
 
-  double balance_ = 0;
-  bool account_status_ = false;
+  double balance_ = 0.0;
+  bool account_status_ = true;
 
   static std::unordered_set<std::string> used_account_numbers;
 };

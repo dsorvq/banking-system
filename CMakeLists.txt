@@ -14,6 +14,7 @@ add_executable(main
         src/main.cpp
         src/unit_tests.cpp
         src/Person.cpp
+        src/Account.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wpedantic")
