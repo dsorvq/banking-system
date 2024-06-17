@@ -81,7 +81,7 @@ auto Account::generate_unique_account_number() const -> std::string {
 }
 
 auto Account::authentication(const std::string& owner_fingerprint) const -> bool {
-  auto is_correct = std::hash<std::string>{}(owner_fingerprint) == owner_->get_hashed_fingerprint();
+  auto is_correct = hash_fingerprint(owner_fingerprint) == owner_->get_hashed_fingerprint();
   if (!is_correct) {
     throw std::invalid_argument("Fingerprints are not matching");
   }

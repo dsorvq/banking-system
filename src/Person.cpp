@@ -9,7 +9,7 @@ Person::Person(std::string &name,
   : name_{name}
   , age_{age}
   , gender_{gender}
-  , hashed_fingerprint_ {std::hash<std::string>{}(fingerprint)}
+  , hashed_fingerprint_ {hash_fingerprint(fingerprint)}
   , socioeconomic_rank_{socioeconomic_rank}
   , is_alive_{is_alive}
 {

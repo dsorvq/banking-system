@@ -13,3 +13,7 @@ std::string generate_random_digits_string(size_t len) {
   
   return generated_string;
 }
+
+size_t hash_fingerprint(const std::string& fingerprint) {
+  return std::hash<std::string>{}(fingerprint);
+}
