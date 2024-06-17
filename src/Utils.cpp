@@ -2,7 +2,6 @@
 
 std::string generate_random_digits_string(size_t len) {
   std::string generated_string;
-  generated_string.erase(begin(generated_string), end(generated_string));
   std::random_device rd;
   std::mt19937 generator(rd());
   std::uniform_int_distribution<int> distribution(0, 9);
