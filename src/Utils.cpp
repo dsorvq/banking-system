@@ -1,6 +1,6 @@
 #include "Utils.hpp"
 
-std::string generate_random_digits_string(size_t len) {
+auto generate_random_digits_string(size_t len) -> std::string {
   std::string generated_string;
   std::random_device rd;
   std::mt19937 generator(rd());
@@ -13,6 +13,6 @@ std::string generate_random_digits_string(size_t len) {
   return generated_string;
 }
 
-size_t hash_fingerprint(const std::string& fingerprint) {
+auto hash_fingerprint(const std::string& fingerprint) -> size_t {
   return std::hash<std::string>{}(fingerprint);
 }

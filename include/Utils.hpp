@@ -1,6 +1,6 @@
 #include <string>
 #include <random>
 
-std::string generate_random_digits_string(size_t len);
+auto generate_random_digits_string(size_t len) -> std::string;
 
-size_t hash_fingerprint(const std::string& fingerprint);
+auto hash_fingerprint(const std::string& fingerprint) -> size_t;
